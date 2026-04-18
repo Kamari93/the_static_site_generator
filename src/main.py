@@ -1,6 +1,7 @@
 from textnode import TextNode, TextType
 from htmlnode import HTMLNode
 from leafnode import LeafNode
+from parentnode import ParentNode
 print("hello world")
 
 def main():
@@ -10,6 +11,8 @@ def main():
     print(repr(htmlnode))
     leafnode = LeafNode("a", "Click me!", {"href": "https://www.google.com"})
     print(repr(leafnode))
+    parent_node = ParentNode("div", [leafnode], {"class": "container"})
+    print(repr(parent_node))
 
 
 if __name__ == "__main__":
