@@ -1,6 +1,10 @@
+import sys
+import os
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
+
 import unittest
 from textnode import TextNode, TextType
-from split_delimiter import split_nodes_delimiter
+from split_nodes import split_nodes_delimiter
 
 
 class TestSplitNodesDelimiter(unittest.TestCase):

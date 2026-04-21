@@ -1,6 +1,8 @@
-python3 src/test_textnode.py
-python3 src/test_htmlnode.py
-python3 src/test_leafnode.py
-python3 src/test_parentnode.py
-python3 src/test_split_delimiter.py
-python3 src/test_extract_markdown.py
+python3 src/tests/test_textnode.py
+python3 src/tests/test_htmlnode.py
+python3 src/tests/test_leafnode.py
+python3 src/tests/test_parentnode.py
+python3 src/tests/test_split_delimiter.py
+python3 src/tests/test_extract_markdown.py
+python3 src/tests/test_split_img_link.py
+python3 src/tests/test_text_to_textnodes.py

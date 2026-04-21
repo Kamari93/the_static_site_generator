@@ -1,3 +1,7 @@
+import sys
+import os
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
+
 import unittest
 from extract_markdown import extract_markdown_images, extract_markdown_links
 
