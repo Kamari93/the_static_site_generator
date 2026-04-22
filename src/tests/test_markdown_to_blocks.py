@@ -26,6 +26,22 @@ This is the same paragraph on a new line
                 ],
             )
 
+        def test_markdown_to_blocks_empty_string(self):
+            md = ""
+            blocks = markdown_to_blocks(md)
+            self.assertEqual(blocks, [])
+        
+        def test_markdown_to_blocks_no_double_newlines(self):
+            md = "This is a single paragraph with no double newlines."
+            blocks = markdown_to_blocks(md)
+            self.assertEqual(blocks, ["This is a single paragraph with no double newlines."])
+        
+        def test_markdown_to_blocks_multiple_double_newlines(self):
+            md = "First paragraph.\n\n\n\nSecond paragraph with extra newlines.\n\n\nThird paragraph."
+            blocks = markdown_to_blocks(md)
+            self.assertEqual(blocks, ["First paragraph.", "Second paragraph with extra newlines.", "Third paragraph."])
+
+
 
 if __name__ == "__main__":
     unittest.main()
