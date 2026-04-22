@@ -6,3 +6,4 @@ python3 src/tests/test_split_delimiter.py
 python3 src/tests/test_extract_markdown.py
 python3 src/tests/test_split_img_link.py
 python3 src/tests/test_text_to_textnodes.py
+python3 src/tests/test_markdown_to_blocks.py
