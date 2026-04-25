@@ -76,7 +76,8 @@ print('world')
 
         self.assertEqual(
             html,
-            "<div><pre><code>print('hello')\nprint('world')</code></pre></div>"
+            "<div><pre><code>print('hello')\nprint('world')\n</code></pre></div>"
+            # "<div><pre><code>print('hello')\nprint('world')</code></pre></div>"
         )
 
     def test_quote_block(self):

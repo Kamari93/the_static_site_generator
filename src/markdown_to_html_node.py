@@ -1,5 +1,5 @@
 import re
-# import textwrap
+import textwrap
 from markdown_to_blocks import markdown_to_blocks
 from block_to_block_type import block_to_block_type, BlockType
 from parentnode import ParentNode
@@ -33,28 +33,17 @@ def markdown_to_html_node(markdown):
             children.append(header_node)
 
         elif block_type == BlockType.CODE:
-            lines = block.splitlines()
-            
-            # Check if it's an indented code block by looking at content indentation
-            # Indented code blocks have extra indentation on content lines (4+ spaces)
-            # Fenced code blocks (```) have no extra indentation
-            content_lines = lines[1:-1] if len(lines) > 2 else lines
-            has_content_indent = any(len(line) - len(line.lstrip()) >= 4 for line in content_lines if line.strip())
-            
-            # Strip common leading indentation from indented code blocks
-            if has_content_indent and len(lines) > 1:
-                indent = min(len(line) - len(line.lstrip()) for line in lines[1:-1] if line.strip())
-                if indent > 0:
-                    lines = [line[indent:] for line in lines]
-            
-            code_lines = lines[1:-1]
-            block_text = "\n".join(code_lines)
-            
-            # Add trailing newline for indented code blocks only
-            if has_content_indent:
-                block_text += "\n"
+            # remove ``` fences
+            content = block[3:-3]
 
-            code_node = LeafNode("code", value=block_text)
+            # remove leading newline (common after opening ```)
+            if content.startswith("\n"):
+                content = content[1:]
+
+            # normalize indentation from test strings
+            content = textwrap.dedent(content)
+
+            code_node = LeafNode("code", value=content)
             pre_node = ParentNode("pre", children=[code_node])
             children.append(pre_node)
 
