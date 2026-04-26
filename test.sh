@@ -9,3 +9,4 @@ python3 src/tests/test_text_to_textnodes.py
 python3 src/tests/test_markdown_to_blocks.py
 python3 src/tests/test_block_to_block_type.py
 python3 src/tests/test_markdown_to_html_node.py
+python3 src/tests/test_extract_title.py
