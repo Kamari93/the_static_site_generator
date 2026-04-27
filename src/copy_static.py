@@ -32,12 +32,12 @@ def copy_static_to_public(src_dir, dest_dir):
     copy_recursive(src_dir, dest_dir)
 
 # get paths for static dir and public dir
-base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+# base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # base_dir = os.path.dirname(os.path.abspath(__file__))
-static_dir = os.path.join(base_dir, "static")
-public_dir = os.path.join(base_dir, "public")
-print("STATIC:", static_dir)
-print("PUBLIC:", public_dir)
+# static_dir = os.path.join(base_dir, "static")
+# public_dir = os.path.join(base_dir, "public")
+# print("STATIC:", static_dir)
+# print("PUBLIC:", public_dir)
 
 # run the function
-copy_static_to_public(static_dir, public_dir)
+# copy_static_to_public(static_dir, public_dir)
