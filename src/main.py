@@ -20,12 +20,14 @@ def main():
     # print(repr(parent_node))
 
     print("keep going...")
-    # basepath for github pages
+    # basepath for github pages...used for urls not file systems
     basepath = sys.argv[1] if len(sys.argv) > 1 else "/"
     
+    # for file systems
     base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
     static_dir = os.path.join(base_dir, "static")
-    public_dir = os.path.join(base_dir, "public")
+    # public_dir = os.path.join(base_dir, "public")
+    docs = os.path.join(base_dir, "docs")
     
     # content_path = os.path.join(base_dir, "content", "index.md")
     content_path = os.path.join(base_dir, "content")
@@ -33,11 +35,11 @@ def main():
     # dest_path = os.path.join(base_dir, "public", "index.html")
 
     # 1. Copy static files
-    copy_static_to_public(static_dir, public_dir)
+    copy_static_to_public(static_dir, docs)
     
     # 2. Generate page(s)
     # generate_page(content_path, template_path, dest_path)
-    generate_pages_recursive(content_path, template_path, public_dir, basepath)
+    generate_pages_recursive(content_path, template_path, docs, basepath)
 
 
 if __name__ == "__main__":
