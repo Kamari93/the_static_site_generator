@@ -1,4 +1,5 @@
 import os
+import sys
 from textnode import TextNode, TextType
 from htmlnode import HTMLNode
 from leafnode import LeafNode
@@ -19,6 +20,9 @@ def main():
     # print(repr(parent_node))
 
     print("keep going...")
+    # basepath for github pages
+    basepath = sys.argv[1] if len(sys.argv) > 1 else "/"
+    
     base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
     static_dir = os.path.join(base_dir, "static")
     public_dir = os.path.join(base_dir, "public")
@@ -33,7 +37,7 @@ def main():
     
     # 2. Generate page(s)
     # generate_page(content_path, template_path, dest_path)
-    generate_pages_recursive(content_path, template_path, public_dir)
+    generate_pages_recursive(content_path, template_path, public_dir, basepath)
 
 
 if __name__ == "__main__":

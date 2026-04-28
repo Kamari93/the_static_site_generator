@@ -12,7 +12,7 @@ def extract_title(markdown):
     raise ValueError("Markdown does not contain a valid title (line starting with '# ')")
 
 
-def generate_page(from_path, template_path, dest_path):
+def generate_page(from_path, template_path, dest_path, base_path):
     print(f"Generating page from {from_path} to {dest_path} using {template_path}")
     
     with open(from_path, 'r', encoding='utf-8') as f:
@@ -25,7 +25,7 @@ def generate_page(from_path, template_path, dest_path):
     
     title = extract_title(markdown_content)
 
-    new_content = template_content.replace("{{ Title }}", title).replace("{{ Content }}", html)
+    new_content = template_content.replace("{{ Title }}", title).replace("{{ Content }}", html).replace('href="/', f'href="{base_path}').replace('src="/', f'src="{base_path}')
 
     # create dest_path dir if it doesn't exist
     os.makedirs(os.path.dirname(dest_path), exist_ok=True)
@@ -34,7 +34,7 @@ def generate_page(from_path, template_path, dest_path):
         f.write(new_content)
     
 
-def generate_pages_recursive(dir_path_content, template_path, dest_dir_path):
+def generate_pages_recursive(dir_path_content, template_path, dest_dir_path, base_path):
     # crawl every file in content dir
     for item in os.listdir(dir_path_content):
         # for each item build paths for recursive calls
@@ -45,9 +45,9 @@ def generate_pages_recursive(dir_path_content, template_path, dest_dir_path):
         if os.path.isdir(content_path):
             # make dest_path dir if it doesn't exist
             os.makedirs(dest_path, exist_ok=True)
-            generate_pages_recursive(content_path, template_path, dest_path)
+            generate_pages_recursive(content_path, template_path, dest_path, base_path)
         
         # convert to md files to html and generate pages
         elif os.path.isfile(content_path) and content_path.endswith(".md"):
             html_dest_path = dest_path.replace(".md", ".html")
-            generate_page(content_path, template_path, html_dest_path)
+            generate_page(content_path, template_path, html_dest_path, base_path)
