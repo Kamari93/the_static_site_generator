@@ -4,7 +4,7 @@ from htmlnode import HTMLNode
 from leafnode import LeafNode
 from parentnode import ParentNode
 from copy_static import copy_static_to_public
-from generate_page import generate_page
+from generate_page import generate_page, generate_pages_recursive
 
 
 def main():
@@ -23,15 +23,17 @@ def main():
     static_dir = os.path.join(base_dir, "static")
     public_dir = os.path.join(base_dir, "public")
     
-    content_path = os.path.join(base_dir, "content", "index.md")
+    # content_path = os.path.join(base_dir, "content", "index.md")
+    content_path = os.path.join(base_dir, "content")
     template_path = os.path.join(base_dir,"template.html")
-    dest_path = os.path.join(base_dir, "public", "index.html")
+    # dest_path = os.path.join(base_dir, "public", "index.html")
 
     # 1. Copy static files
     copy_static_to_public(static_dir, public_dir)
     
-    # 2. Generate page
-    generate_page(content_path, template_path, dest_path)
+    # 2. Generate page(s)
+    # generate_page(content_path, template_path, dest_path)
+    generate_pages_recursive(content_path, template_path, public_dir)
 
 
 if __name__ == "__main__":
